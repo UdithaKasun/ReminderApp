@@ -1,17 +1,40 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Reminders</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <button (click)="showModal()" ion-button color="dark" round icon-start>
+    <ion-icon name='add' is-active="false"></ion-icon>
+    Add Reminder
+  </button>
+  <h4>
+    <ion-icon name="alarm"></ion-icon> &nbsp; Current Reminders</h4>
+  <hr>
+  <ion-card *ngFor="let reminder of reminders">
+
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="../../assets/imgs/alarm.png">
+      </ion-avatar>
+      <h2>{{ reminder.Title }}</h2>
+      <p>{{ reminder.Date + " , " + reminder.Time }}</p>
+    </ion-item>
+    <ion-card-content>
+      <p>{{ reminder.Description }}</p>
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col>
+        <button (click)="removeReminder(reminder)" ion-button color="danger" clear small icon-start>
+          <ion-icon name='close-circle'></ion-icon>
+          Remove
+        </button>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+
+
 </ion-content>
